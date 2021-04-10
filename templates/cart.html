@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cart</title>
+{% endblock %}
+
+{% block body %}
+<div class="header-container" style="height: 80vh;">
+    <img src="/static/images/charityheader.jpg" height="400px" width="100%" alt="">
+    <div class="overlay-card">
+        <h3>Cart</h3>
+        <hr>
+        <label>Thanks for putting trust</label>
+        <hr>
+        <label>Your time slot from starts from <i>12-12-2020 to anytime</i></label>
+        <video width="400" height="240" autoplay muted>
+            <source src="/static/video/care.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div id="username">Welcome! Charity
+        <button class="filledbtn" id="username" onclick="add_more_item('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}')"><span>Add More Item</span></button>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        {% for item in data%}
+        <div class="col-md-3 text-center">
+            <div class="card" style="width: 16rem; margin: 100px 10px 10px 0px">
+                <div class="card-header" style="background-color:rgb(228, 212, 212)">
+                    <strong>{{item.itemName}}</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span id={{item.id}}>{{item.qx}}</span>
+                    </li>
+                    <li>
+                        <div class="divcartbtn">
+                            <button class="cartbtnplus" id="add"
+                                onclick="incItem('{{item.id}}', '{{item.qx}}', '{{item.actualqx}}')">+</button>
+                            <button class="cartbtnminus" id="sub"
+                                onclick="subItem('{{item.id}}', '{{item.qx}}', '{{item.actualqx}}')">-</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    <button class="filledbtn" style="display: table; margin: 10px auto;" onclick="genQR('{{jsons}}')">Genrate QR Code</button>
+</div>
+
+<script>
+    
+    function add_more_item (usrname, password, group) {
+        window.location.href = "http://127.0.0.1:5000/login/"+usrname+"/"+password+'/'+group;
+    }
+
+
+    function incItem(index, qx, actualqx) {
+        var q = document.getElementById(index).innerHTML;
+        console.log(actualqx, qx)
+        if (parseInt(q) + 1 <= actualqx) {
+            document.getElementById(index).innerHTML = parseInt(q) + 1;
+        }
+        else {
+            window.alert("Required quantity is not available")
+        }
+    }
+
+    function subItem(index, qx, acrtualqx) {
+        var q = document.getElementById(index).innerHTML;
+        if (qx <= acrtualqx && parseInt(q) > 1) {
+            document.getElementById(index).innerHTML = parseInt(q) - 1;
+        }
+        else {
+            window.alert("You cannot decrement quantity to 0")
+        }
+    }
+
+    function genQR(data) {
+
+        datas = JSON.parse(data)
+
+        finalData = [] //[{id, qx}, ...]
+        datas.forEach((obj) => {
+            var qx = document.getElementById(obj.id).innerHTML;
+            finalData.push({ id: obj.id, qx })
+        })
+        if (finalData.length == 0) {
+            alert('Select atleast one item')
+            return;
+        }
+        const final = JSON.stringify(finalData)
+
+        window.location.href = "http://127.0.0.1:5000/qr/" + final;
+
+
+    }
+
+</script>
+
+{% endblock %}

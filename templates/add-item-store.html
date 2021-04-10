@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Item</title>
+{% endblock %}
+
+{% block body %}
+<div class="header-container">
+    <img src="/static/images/header.jpg" height="400px" width="100%" alt="">
+    <div class="overlay">
+
+        <form class="well form-horizontal" action="{{url_for('acceptedForm', data_json=data_json)}}" method="post"
+            id="contact_form">
+            <fieldset class='pt-3'>
+
+                <!-- Form Name -->
+                <legend>
+                    <center>
+                        <h2 style="color: rgb(75, 17, 182);"><b>Add Item</b></h2>
+                    </center>
+                </legend><br>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Item name</label>
+                    <div class="col-md-12 inputGroupContainer">
+                        <div class="input-group">
+                            <input name="Item name" placeholder="Item name" id="item" class="form-control contact-form"
+                                type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Text date-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Expiring Date</label>
+                    <div class="col-md-12 inputGroupContainer">
+                        <div class="input-group">
+                            <input name="Expiring Date" placeholder="Expiring Date" id="myDate"
+                                class="form-control contact-form" type="date">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Quantity</label>
+                    <div class="col-md-12 inputGroupContainer">
+                        <div class="input-group">
+                            <input name="Quantity" id="qx" placeholder="Quantity" class="form-control contact-form"
+                                type="number">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-8 control-label">Available till (optional)</label>
+                    <div class="col-md-12 inputGroupContainer">
+                        <div class="input-group">
+                            <input name="Expiring Date" placeholder="Expiring Date" class="form-control contact-form"
+                                type="date">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <button class="filledbtn btnscle" id="newitembtn">Add Item</button>
+    </div>
+    <div id="username">
+        <button class="filledbtn" id="listbtn">View Item List</button>
+        <label id="usrname" style="display: none;">{{usrname}}</label>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.getElementById("newitembtn").onclick = function () {
+        var dt = document.getElementById("myDate").value;
+        var dateArr = dt.split("-");
+        var year = dateArr[0];
+        var month = dateArr[1];
+        var day = dateArr[2];
+        var username = document.getElementById("usrname").textContent;
+        var item = document.getElementById("item").value;
+        var qx = document.getElementById("qx").value;
+
+        if (item === "") alert("Please insert item name");
+        else if (day === "" || day <= 0 || day > 31) alert("Please insert valid day");
+        else if (month === "" || month <= 0 || month > 12) alert("Please insert valid month");
+        else if (year === "" || year <= 0 || year < 2021) alert("Please insert valid year");
+        else if (qx === "" || qx <= 0) alert("Please insert quuanatity");
+        else {
+            window.location.href = "http://127.0.0.1:5000/add/item/" + username + "/" + item + "/" + day + "/" + month + "/" + year + "/" + qx;
+        }
+
+    }
+    document.getElementById("listbtn").onclick = function () {
+        var usrname = document.getElementById("usrname").textContent;
+        window.location.href = "http://127.0.0.1:5000/list/item/" + usrname;
+    }
+</script>
+{% endblock %}

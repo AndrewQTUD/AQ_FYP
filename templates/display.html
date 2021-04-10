@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Display</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <h2 class="text-center pt-3" style="color: rgb(75, 17, 182);">Total Items</h2>
+                {% for item in data%}
+                <div class="col-md-6">
+                    <div class="card" style="width: 18rem; margin: 20px 5px 10px 5px;">
+                        <div class="card-header">
+                            <strong>{{item.itemName}}</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Quantity: {{item.qx}}</li>
+                            <li class="list-group-item">Expires: {{item.expDay}}/{{item.expMonth}}/{{item.expYear}}</li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <form class="well form-horizontal" action="{{url_for('acceptedForm', data_json=data_json)}}" method="post" id="contact_form">
+                    <fieldset class='pt-3'>
+
+                        <!-- Form Name -->
+                        <legend>
+                            <center>
+                                <h2  style="color: rgb(75, 17, 182);"><b>Send Order</b></h2>
+                            </center>
+                        </legend><br>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-6 control-label">Full Name</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="full_name" placeholder="Full Name" class="form-control contact-form" type="text">
+                                </div>
+                            </div>
+                        </div>
+                
+                        
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="email" placeholder="E-Mail Address" class="form-control contact-form" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-6 control-label">Location</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="location" placeholder="Location" class="form-control contact-form" type="text" maxlength="150">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Contact No.</label>
+                            <div class="col-md-12 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="phone" placeholder="Contact No." class="form-control contact-num" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label class="col-md-4 control-label">Department / Office</label>
+                            <div class="col-md-12 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="department" class="form-control selectpicker">
+                                        <option value="">Select your Department/Office</option>
+                                        <option>Department of Engineering</option>
+                                        <option>Department of Agriculture</option>
+                                        <option>Accounting Office</option>
+                                        <option>Tresurer's Office</option>
+                                        <option>MPDC</option>
+                                        <option>MCTC</option>
+                                        <option>MCR</option>
+                                        <option>Mayor's Office</option>
+                                        <option>Tourism Office</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-12 text-center">
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button
+                                    type="submit" class="btn btn-warning" style="width: 50%; padding: 10px; margin-bottom: 20px;font-weight: bold; color: rgb(123, 83, 197);">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT
+                                    <span
+                                        class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

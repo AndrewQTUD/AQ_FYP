@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Item List</title>
+{% endblock %}
+
+{% block body %}
+<div class="header-container">
+    <img src="/static/images/charityheader.jpg" height="400px" width="100%" alt="">
+    <div class="overlay-card">
+        <h3>Item List</h3>
+        <hr>
+        <label style="font-size:14px; color:rgb(83, 87, 87);">Multiple type of Food available here.</label>
+        <hr>
+        <label style="font-size:14px; color:rgb(83, 87, 87);">We are here for support</label>
+        <video width="400" height="240" autoplay muted>
+            <source src="/static/video/care.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div id="username">Welcome! <label id="usrname">{{usrname}}</label>
+        <button class="filledbtn" onclick="go_to_cart('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}' )">Go to
+            Cart</button>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for item in items%}
+        <div class="col-md-3 text-center">
+            <div class="card" style="width: 16rem; margin: 100px 10px 10px 0px">
+                <div class="card-header" style="background-color:rgb(228, 212, 212)">
+                    <strong>{{item.itemName}}</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Available quantity {{item.qx}}
+                    </li>
+                    <li>
+                        <button class="filledsmbtn" id="toCart"
+                            onclick="clicked('{{item.id}}', '{{item.username}}', '{{item.itemName}}', '{{item.qx}}')">Add
+                            to Cart</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    var itemList = []
+    function clicked(id, storeName, itemName, actualqx) {
+        var item = {
+            "id": id,
+            "storeName": storeName,
+            "itemName": itemName,
+            "qx": 1,
+            "actualqx": actualqx
+        }
+        isAlreadyPresent = false
+        itemList.forEach((obj) => {
+            if (id == obj.id) {
+                isAlreadyPresent = true
+            }
+        })
+
+        if (isAlreadyPresent) {
+            window.alert('Its already in the Cart')
+        } else {
+            itemList.push(item);
+            alert('item with ' + id + " " + storeName + " will be added to cart")
+        }
+        // console.log(itemList);
+    }
+
+    function go_to_cart(username, password, group) {
+        var data = JSON.stringify(itemList); //it's a list of obj
+        const prevInfo = JSON.stringify([username, password, group]);
+
+        window.location.href = "http://127.0.0.1:5000/show/cart/" + data + '/' + prevInfo;
+    }
+
+    // document.getElementById("cartbtn").onclick = function () {
+
+    // }
+</script>
+
+{% endblock %}

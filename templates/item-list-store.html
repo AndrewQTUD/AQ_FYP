@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Item List</title>
+{% endblock %}
+
+{% block body %}
+<div class="header-container">
+    <img src="/static/images/header.jpg" height="400px" width="100%" alt="">
+    <div class="overlay-card">
+        <h3>Item List</h3>
+        <hr>
+        <label>Thanks for supporting</label>
+        <video width="400" height="240" autoplay muted>
+            <source src="/static/video/thanks.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div id="username">Welcome! <label id="usrname">{{usrname}}</label>
+        <button class="filledbtn" id="newitembtn">Add new Item</button>
+    </div>
+</div>
+
+<div class="container-fluid" style="background-color:rgb(235, 235, 235);">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row mt-5">
+                <h2 class="text-center pt-3 mt-5" style="color: rgb(75, 17, 182);">Donated Items</h2>
+                {% for item in items %}
+                {% if item.qx != 0 %}
+                <div class="col-md-6 text-center">
+                    <div class="card" style="width: 18rem; margin: 20px 5px 10px 5px;">
+                        <div class="card-header">
+                            <strong>{{item.itemName}}</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Expiring Date : {{item.expDay}} -
+                                {{item.expMonth}} - {{item.expYear}}</li>
+                            <li class="list-group-item text-center">Available quantity :
+                                {{item.qx}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6" style="border-left: 2px dashed rgb(75, 17, 182);">
+            <div class="row mt-5">
+                <h2 class="text-center pt-3 mt-5" style="color: rgb(75, 17, 182);">Orders</h2>
+                {% for item in orders %}
+                <div class="col-md-6 text-center">
+                    <div class="card" style="width: 18rem; margin: 20px 5px 10px 5px;">
+                        <div class="card-header">
+                            <strong>{{item.fullname}}</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> {{foodnames[item.fooditemid]}}</li>
+                            <li class="list-group-item">Quantity: {{item.quantityoffood}}</li>
+                            <li class="list-group-item">{{item.email}}</li>
+                            <li class="list-group-item">{{item.contact}}</li>
+                            <li class="list-group-item">{{item.location}}</li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.getElementById("newitembtn").onclick = function () {
+        var usrname = document.getElementById("usrname").textContent;
+        window.location.href = "http://127.0.0.1:5000/item/" + usrname;
+    }
+</script>
+{% endblock %}
