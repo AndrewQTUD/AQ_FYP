@@ -11,6 +11,7 @@
     <div id="username">Welcome! <label id="usrname">{{usrname}}</label>
         <button class="filledbtn" onclick="go_to_cart('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}' )">Go to
             Cart</button>
+            <button class="filledbtn" id="logOutBtn">Log out</button>
     </div>
 </div>
 <div class="container">
@@ -73,6 +74,10 @@
     // document.getElementById("cartbtn").onclick = function () {
 
     // }
+
+    document.getElementById("logOutBtn").onclick = function (){
+        window.location.href = "http://127.0.0.1:5000/";
+    }
 </script>
 
 {% endblock %}
