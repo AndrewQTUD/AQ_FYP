@@ -7,18 +7,9 @@
 {% block body %}
 <div class="header-container" style="height: 80vh;">
     <img src="/static/images/charityheader.jpg" height="400px" width="100%" alt="">
-    <div class="overlay-card">
-        <h3>Cart</h3>
-        <hr>
-        <label>Thanks for putting trust</label>
-        <hr>
-        <label>Your time slot from starts from <i>12-12-2020 to anytime</i></label>
-        <video width="400" height="240" autoplay muted>
-            <source src="/static/video/care.mp4" type="video/mp4">
-        </video>
-    </div>
+    
     <div id="username">Welcome! Charity
-        <button class="filledbtn" id="username" onclick="add_more_item('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}')"><span>Add More Item</span></button>
+        <button class="filledbtn" id="username" onclick="add_more_items('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}')"><span>Add More Item</span></button>
     </div>
 </div>
 

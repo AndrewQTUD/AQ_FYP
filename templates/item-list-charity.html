@@ -7,16 +7,7 @@
 {% block body %}
 <div class="header-container">
     <img src="/static/images/charityheader.jpg" height="400px" width="100%" alt="">
-    <div class="overlay-card">
-        <h3>Item List</h3>
-        <hr>
-        <label style="font-size:14px; color:rgb(83, 87, 87);">Multiple type of Food available here.</label>
-        <hr>
-        <label style="font-size:14px; color:rgb(83, 87, 87);">We are here for support</label>
-        <video width="400" height="240" autoplay muted>
-            <source src="/static/video/care.mp4" type="video/mp4">
-        </video>
-    </div>
+    
     <div id="username">Welcome! <label id="usrname">{{usrname}}</label>
         <button class="filledbtn" onclick="go_to_cart('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}' )">Go to
             Cart</button>
