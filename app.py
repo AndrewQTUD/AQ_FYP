@@ -10,6 +10,11 @@ import cv2
 import pyqrcode
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
+#import requests
+#from bs4 import BeautifulSoup
+#import smtplib
+#from datetime import datetime, timedelta
+#from time import time, ctime
 
 # import qrtools
 from PIL import Image
@@ -410,6 +415,7 @@ def download():
     path = get_download_path()
     cv2.imwrite(os.path.join(path, 'qrcode.png'), img)
     cv2.waitKey(0)
+
     # return redirect('http://127.0.0.1:5000/qr/downloaded')
     return ("nothing")
 

@@ -35,14 +35,14 @@
 <script>
     var exampleModal = document.getElementById('exampleModal')
     exampleModal.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
+        // Button that triggered the model
         var button = event.relatedTarget
         // Extract info from data-bs-* attributes
         var recipient = button.getAttribute('data-bs-whatever')
         // If necessary, you could initiate an AJAX request here
         // and then do the updating in a callback.
         //
-        // Update the modal's content.
+        // Update the modle's content.
         var modalTitle = exampleModal.querySelector('.modal-title')
         var modalBodyInput = exampleModal.querySelector('.modal-body input')
 
@@ -56,9 +56,14 @@
     document.getElementById("signup").onclick = function () {
         window.location.href = "http://127.0.0.1:5000/signup";
     }
-    // document.getElementById("checkout").onclick = function () {
-    //     window.location.href = "http://127.0.0.1:5000/uploader";
-    // }
+     document.getElementById("checkout").onclick = function () {
+        var nme = document.getElementById("file");
+         if (nme.value.length < 4) {
+             alert('Must Select any of your photo for upload!');
+             nme.focus();
+             return false;
+         }​
+     }
 
 </script>
 {% endblock %}
