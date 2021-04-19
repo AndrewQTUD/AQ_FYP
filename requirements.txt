@@ -1,2 +1,11 @@
-Flask
-Flask-QRcode
+PyQRCode==1.2.1
+Werkzeug==1.0.1
+pyzbar==0.1.8
+numpy==1.20.1
+Flask_SQLAlchemy==2.4.4
+requests==2.25.1
+Flask==1.1.2
+opencv_python==4.5.1.48
+Flask_QRcode==3.0.0
+beautifulsoup4==4.9.3
+Pillow==8.2.0
