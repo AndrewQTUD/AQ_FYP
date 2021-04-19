@@ -1,0 +1,30 @@
+
+<body style="background-color: lightgrey">
+    <div style="background-color: white;">
+        <h1 style="display:table;margin: 20% auto; color: black;">Thank you for your order<h1>
+            <button class="filledbtncenter" id="home">Home</button>
+    </div>
+</body>
+
+<script>
+
+var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the model
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var recipient = button.getAttribute('data-bs-whatever')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modle's content.
+        var modalTitle = exampleModal.querySelector('.modal-title')
+        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+        modalTitle.textContent = 'Upload ' + recipient
+        modalBodyInput.value = recipient
+    })
+    document.getElementById("home").onclick = function () {
+        window.location.href = "http://127.0.0.1:5000/";
+    }
+</script>

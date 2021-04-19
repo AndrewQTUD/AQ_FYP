@@ -8,13 +8,15 @@ from flask_qrcode import QRcode
 import os
 import cv2
 import pyqrcode
-from werkzeug.utils import secure_filename
+from werkzeug.utils import html, secure_filename
 from flask import send_from_directory
-#import requests
-#from bs4 import BeautifulSoup
-#import smtplib
-#from datetime import datetime, timedelta
-#from time import time, ctime
+import requests
+from bs4 import BeautifulSoup
+import smtplib
+from datetime import datetime, timedelta
+from time import time, ctime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 # import qrtools
 from PIL import Image
@@ -246,14 +248,48 @@ def acceptedForm(data_json):
         location = request.form['location']
         phone = request.form['phone']
         # (username, fullname, email, location, contact, fooditemid, quantityoffood)
+        subject = "Your order from Saving Food."
+
+        html = render_template("email.html")
+
+        msg = MIMEMultipart("alternative", None, [MIMEText(html, 'html')])
+
+        cd = datetime.now()
+
+        def transferInfor(html, subject):
+            def send_email():
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.ehlo()
+                server.starttls()
+                server.ehlo()
+                server.login('andysempai12@gmail.com', 'ocbhdmemnkvkvzea')
+
+                server.sendmail(
+                    # Sender
+                    'andysempai12@gmail.com',
+                    # recipent
+                    'andytown@live.ie',
+
+
+                    msg.as_string()
+
+                )
+
+                server.quit()
+
+            send_email()
+
+        transferInfor(html, subject)
         for item in data:
             order = orders(item['username'], fullname, email,
                            location, phone, item['id'], item['qx'])
             db.session.add(order)
+
         db.session.commit()
+
         return redirect(request.url)
     else:
-        return '<body style="background-color: lightgrey"><div style="background-color: white;"><h1 style="display:table;margin: 20% auto; color: red;">Thanks for submitting your form<h1></div></body>'
+        return render_template('submission.html')
 
 
 # ---------------------------------------------
