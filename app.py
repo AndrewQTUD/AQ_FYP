@@ -249,7 +249,7 @@ def acceptedForm(data_json):
         phone = request.form['phone']
         # (username, fullname, email, location, contact, fooditemid, quantityoffood)
 
-        email1 = "hello"
+        email1 = ""
         email1 = email
 
         html = render_template("email.html")
@@ -272,12 +272,14 @@ def acceptedForm(data_json):
                     # Sender
                     'andysempai12@gmail.com',
                     # recipent
-                    'lairon1@outlook.com',
+                    email1,
 
 
                     msg.as_string()
 
                 )
+
+                print("e-mail sent " + str(cd))
 
                 server.quit()
 
