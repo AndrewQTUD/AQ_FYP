@@ -240,7 +240,7 @@ def display(filename):
 def acceptedForm(data_json):
     if request.method == 'POST':
         # format of data_json
-        #[{'id': 12, 'username': 'rafeh', 'itemName': 'bergers', 'expDay': 5, 'expMonth': 4, 'expYear': 2022, 'qx': '5'}]
+        #[{'id': 12, 'username': 'Andy', 'itemName': 'burgers', 'expDay': 5, 'expMonth': 4, 'expYear': 2022, 'qx': '5'}]
         data = json.loads(data_json)  # list
         print('asdasdasdasdasdasdasd', data)
         fullname = request.form['full_name']
