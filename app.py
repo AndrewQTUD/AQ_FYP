@@ -248,15 +248,19 @@ def acceptedForm(data_json):
         location = request.form['location']
         phone = request.form['phone']
         # (username, fullname, email, location, contact, fooditemid, quantityoffood)
-        subject = "Your order from Saving Food."
+
+        email1 = "hello"
+        email1 = email
 
         html = render_template("email.html")
 
         msg = MIMEMultipart("alternative", None, [MIMEText(html, 'html')])
 
+        subject = msg.get('subject', 'Your order from SaveFood')
+
         cd = datetime.now()
 
-        def transferInfor(html, subject):
+        def transferInfor(html, subject, email1):
             def send_email():
                 server = smtplib.SMTP('smtp.gmail.com', 587)
                 server.ehlo()
@@ -268,7 +272,7 @@ def acceptedForm(data_json):
                     # Sender
                     'andysempai12@gmail.com',
                     # recipent
-                    'andytown@live.ie',
+                    'lairon1@outlook.com',
 
 
                     msg.as_string()
@@ -279,7 +283,7 @@ def acceptedForm(data_json):
 
             send_email()
 
-        transferInfor(html, subject)
+        transferInfor(html, subject, email1)
         for item in data:
             order = orders(item['username'], fullname, email,
                            location, phone, item['id'], item['qx'])
