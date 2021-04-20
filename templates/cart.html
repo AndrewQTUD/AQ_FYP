@@ -9,7 +9,7 @@
     <img src="/static/images/charityheader.jpg" height="400px" width="100%" alt="">
     
     <div id="username">Welcome! Charity
-        <button class="filledbtn" id="username" onclick="add_more_items('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}')"><span>Add More Item</span></button>
+        <button class="filledbtn" id="username" onclick="add_more_item('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}')"><span>Add More Item</span></button>
     </div>
 </div>
 
@@ -41,7 +41,7 @@
     </div>
 </div>
 <div>
-    <button class="filledbtn" style="display: table; margin: 10px auto;" onclick="genQR('{{jsons}}')">Genrate QR Code</button>
+    <button class="filledbtn" style="display: table; margin: 10px auto;" onclick="genQR('{{jsons}}')">Generate QR Code</button>
 </div>
 
 <script>
