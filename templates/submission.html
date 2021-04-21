@@ -2,11 +2,15 @@
 <body style="background-color: lightgrey">
     <div style="background-color: white;">
         <h1 style="display:table;margin: 20% auto; color: black;">Thank you for your order<h1>
-            <button class="filledbtncenter" id="home">Home</button>
+            <button onclick="myFunction()">Home</button>
     </div>
 </body>
 
 <script>
+
+function myFunction(){
+    location.replace("http://127.0.0.1:5000")
+}
 
 var exampleModal = document.getElementById('exampleModal')
     exampleModal.addEventListener('show.bs.modal', function (event) {
@@ -24,7 +28,7 @@ var exampleModal = document.getElementById('exampleModal')
         modalTitle.textContent = 'Upload ' + recipient
         modalBodyInput.value = recipient
     })
-    document.getElementById("home").onclick = function () {
-        window.location.href = "http://127.0.0.1:5000/";
-    }
+ 
+     history.pushState({}, null, newUrl);
+    
 </script>
