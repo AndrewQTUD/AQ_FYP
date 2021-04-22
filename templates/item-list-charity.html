@@ -39,7 +39,12 @@
 </div>
 
 <script>
+    if(localStorage.getItem("itemList")){
+        var itemList = JSON.parse(localStorage.getItem("itemList"))    
+    }
+    else{
     var itemList = []
+    }
     function clicked(id, storeName, itemName, actualqx) {
         var item = {
             "id": id,
@@ -60,12 +65,12 @@
         } else {
             itemList.push(item);
             alert('item with ' + id + " " + storeName + " will be added to cart")
-        }
-        // console.log(itemList);
+        }    
     }
 
     function go_to_cart(username, password, group) {
         var data = JSON.stringify(itemList); //it's a list of obj
+         localStorage.setItem("itemList",data)
         const prevInfo = JSON.stringify([username, password, group]);
 
         window.location.href = "http://127.0.0.1:5000/show/cart/" + data + '/' + prevInfo;
@@ -76,6 +81,7 @@
     // }
 
     document.getElementById("logOutBtn").onclick = function (){
+        localStorage.removeItem("itemList")
         window.location.href = "http://127.0.0.1:5000/";
     }
 </script>
