@@ -454,7 +454,6 @@ def download():
     path = get_download_path()
     cv2.imwrite(os.path.join(path, 'qrcode.png'), img)
     cv2.waitKey(0)
-
     # return redirect('http://127.0.0.1:5000/qr/downloaded')
     return ("nothing")
 
