@@ -20,11 +20,11 @@
                 <form method="POST" enctype="multipart/form-data" action="http://localhost:5000/uploader">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <input class="form-control form-control-lg" id="formFileLg" type="file" name='file'>
+                            <input class="form-control form-control-lg" id="formFileLg" type="file" name='file' multiple accept=".jpg, .png">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" onclick="return check();" value="Upload">Submit</button>
+                        <button type="submit" class="btn btn-danger" onclick="return check();return "TestFileType(this.form.uploadfile.value, ['gif', 'jpg', 'png', 'jpeg']);" value="Upload">Submit</button>
                     </div>
                 </form>
             </div>
@@ -60,12 +60,27 @@
                 return true;
     }
 
+    document.getElementById("file").addEventListener("change", validateFile)
+
+    function fileValidation(){
+    var fileInput = document.getElementById('file');
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if(!allowedExtensions.exec(filePath)){
+        alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        fileInput.value = '';
+        return false;
+    }
+}
+
     document.getElementById("Login").onclick = function () {
         window.location.href = "http://127.0.0.1:5000/login";
     }
     document.getElementById("signup").onclick = function () {
         window.location.href = "http://127.0.0.1:5000/signup";
     }
+
+    
      
       
 
