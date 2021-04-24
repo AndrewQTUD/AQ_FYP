@@ -195,7 +195,7 @@ def upload_file():
             # return redirect(url_for('uploaded_file', filename=filename))
             return redirect(url_for('display', filename=filename))
 
-    return render_template("checkout.html")
+    return render_template("home2.html")
 
 
 # ---------------------------------
