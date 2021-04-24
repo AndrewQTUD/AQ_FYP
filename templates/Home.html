@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" value="Upload">Submit</button>
+                        <button type="submit" class="btn btn-danger" onclick="return check();" value="Upload">Submit</button>
                     </div>
                 </form>
             </div>
@@ -49,6 +49,16 @@
         modalTitle.textContent = 'Upload ' + recipient
         modalBodyInput.value = recipient
     })
+
+    function check(){
+        if (document.getElementById('formFileLg').value==""
+                 || document.getElementById('formFileLg').value==undefined)
+                 {
+                     alert ("Please enter a file");
+                     return false;
+                 }
+                return true;
+    }
 
     document.getElementById("Login").onclick = function () {
         window.location.href = "http://127.0.0.1:5000/login";
