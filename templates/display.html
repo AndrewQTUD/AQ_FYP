@@ -54,7 +54,7 @@
                             <label class="col-md-4 control-label">E-Mail</label>
                             <div class="col-md-12 inputGroupContainer">
                                 <div class="input-group">
-                                    <input name="email" placeholder="E-Mail Address" class="form-control contact-form" type="text">
+                                    <input name="email" placeholder="E-Mail Address" class="form-control contact-form" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-12 text-center">
                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button
-                                    type="submit" class="btn btn-warning" style="width: 50%; padding: 10px; margin-bottom: 20px;font-weight: bold; color: rgb(123, 83, 197);">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT
+                                    type="submit" onclick="return validateEmail" class="btn btn-warning" style="width: 50%; padding: 10px; margin-bottom: 20px;font-weight: bold; color: rgb(123, 83, 197);">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT
                                     <span
                                         class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
                             </div>
@@ -96,5 +96,6 @@
     </div>
 </div>
 </div>
+
 
 {% endblock %}
