@@ -14,9 +14,10 @@ import requests
 from bs4 import BeautifulSoup
 import smtplib
 from datetime import datetime, timedelta
-from time import time, ctime
+from time import ctime, sleep
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import time
 
 # import qrtools
 from PIL import Image
@@ -454,8 +455,9 @@ def download():
     path = get_download_path()
     cv2.imwrite(os.path.join(path, 'qrcode.png'), img)
     cv2.waitKey(0)
-    # return redirect('http://127.0.0.1:5000/qr/downloaded')
-    return ("nothing")
+    time.sleep(2)
+
+    return render_template("home2.html")
 
 
 if __name__ == '__main__':
