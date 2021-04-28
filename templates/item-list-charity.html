@@ -11,13 +11,13 @@
     <div id="username">Welcome! <label id="usrname">{{usrname}}</label>
         <button class="filledbtn" onclick="go_to_cart('{{prevInfo[0]}}','{{prevInfo[1]}}','{{prevInfo[2]}}' )">Go to
             Cart</button>
-            <button class="filledbtn" id="logOutBtn">Log out</button>
+            <button class="filledbtn" id="logOutBtn">Log out</button> 
     </div>
 </div>
 <div class="container">
     <div class="row">
         {% for item in items%}
-        <div class="col-md-3 text-center">
+        <div class="col-md-3 text-center id="item" ">
             <div class="card" style="width: 16rem; margin: 100px 10px 10px 0px">
                 <div class="card-header" style="background-color:rgb(228, 212, 212)">
                     <strong>{{item.itemName}}</strong>
