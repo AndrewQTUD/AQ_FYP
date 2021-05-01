@@ -16,6 +16,7 @@ function App() {
         setFormEnabled(true);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     window.addEventListener("beforeunload", handleUnload);
@@ -38,22 +39,22 @@ function App() {
   return (
     <div className="container">
       <h1 className="brand">
-        <span>Demo Company</span>
+        <span>Save Food</span>
       </h1>
       {!formEnabled ? (
         <div style={{ background: "#fff", padding: 30 }}>
-          <h1 style={{ textTransform: "uppercase" }}>You are on the queue</h1>
+          <h1 style={{ textTransform: "uppercase" }}>You are in the queue</h1>
         </div>
       ) : (
         <div className="wrapper">
           <div className="company-info">
-            <h3>Demo Company</h3>
+            <h3>Save Food</h3>
             <ul>
               <li>
-                <i className="fa fa-road"></i> Dublin, Ireland
+                <i className="fa fa-road"></i>Dublin, Ireland
               </li>
               <li>
-                <i className="fa fa-phone"></i> (+353) 123 4567 89
+                <i className="fa fa-phone"></i> (+353) 0852071519
               </li>
               <li>
                 <i className="fa fa-envelope"></i> C15339351@mytudublin.ie
@@ -61,14 +62,14 @@ function App() {
             </ul>
           </div>
           <div className="contact">
-            <h3>E-mail Us</h3>
+            <h3>Thank you for choosing us!</h3>
             <form id="contact-form" onSubmit={handleSubmitForm}>
               <p>
                 <label>Name</label>
                 <input type="text" name="name" id="name" required />
               </p>
               <p>
-                <label>Company</label>
+                <label>Charity</label>
                 <input type="text" name="company" id="company" />
               </p>
               <p>
@@ -80,7 +81,9 @@ function App() {
                 <input type="text" name="phone" id="phone" />
               </p>
               <p className="full">
-                <button type="submit">Submit</button>
+                <button onClick="" type="submit">
+                  Submit
+                </button>
               </p>
             </form>
           </div>
